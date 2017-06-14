@@ -1,24 +1,13 @@
 <?php
+	error_reporting(E_ALL);
+	ini_set("error_reporting" , true);
 
 class MailController {
 
-	protected $name;
-	protected $email;
-	protected $phone_number;
-	protected $company;
-	protected $from;
-	protected $subject;
-
 	public function __construct($name , $email , $phone_number , $company) {
-		$this->name = $name;
-		$this->email = $email;
-		$this->phone_number = $phone_number;
-		$this->company = $company;
-		$this->from = "hello@powderhousedevs.com";
-		$this->subject = "Thank you for contacting us!";
-		$this->message = "Hello $this->name, We are so happy that you could reach out to us! Your project is very important to us and we will be contacting you within 24 hours to learn more about how we can help make your idea a reality. Looking forward to having a productive relationship with you and $this->company, Sincerly PowderHouseDevelopment team.";
-		$this->sendMail($this->email, $this->subject , $this->message);
-		$this->ourCopy();
+		$this->sendMail($email, $subject , $message);
+		$this->ourCopy($name, $company , $phone_number, $email);
+		$message = "Hello" . $name ", We are so happy that you could reach out to us! Your project is very important to us and we will be contacting you within 24 hours to learn more about how we can help make your idea a reality. Looking forward to having a productive relationship with you and ". $company", Sincerly PowderHouseDevelopment team.";
 	}
 
 	public function sendMail($email , $subject , $message) {
@@ -29,8 +18,8 @@ class MailController {
 		}
 	}
 
-	public function ourCopy() {
-		if(mail("employgeorgie@gmail.com", "$this->name has contacted us on behalf of $this->company", "Name: $this->name\n Company: $this->company\n Phone Number: $this->phone_number\n Email: $this->email")) {
+	public function ourCopy($name, $company, $phone_number, $email) {
+		if(mail("employgeorgie@gmail.com", $name. " has contacted us on behalf of" .  $company ", Name: " . $name "Company:" $company "Phone Number:" . $phone_number "Email:" .  $email)) {
 			echo "<br>Also good.";
 		} else {
 			echo "<br>Bad";
@@ -39,4 +28,9 @@ class MailController {
 }
 
 //$TheMail  = new MailController($_POST['name'] , $_POST['email'] , $_POST['phone_number'] , $_POST['company']);
-$TestMail = new MailController("Tester account" , "n7georgie" , 270-370-2890 , "TestCompany");
+$TestMail = new MailController("Tester Name" , "n7georgie@gmail.com" , "2703702890" , "TestCompany");
+dd($TestMail);
+function dd($item) {
+	var_dump($TestMail);
+	die("<-------Result");
+}
