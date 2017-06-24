@@ -18,5 +18,5 @@ class MailController {
 	}
 }
 
-//$TheMail  = new MailController($_POST['name'] , $_POST['email'] , $_POST['phone_number'] , $_POST['company']);
-$TestMail = new MailController("Tester Name" , "n7georgie@gmail.com" , "2703702890" , "TestCompany");
+$TheMail  = new MailController($_POST['name'] , $_POST['email'] , $_POST['phone_number'] , $_POST['company']);
+header("Location: index.html");
